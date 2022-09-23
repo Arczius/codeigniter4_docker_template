@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  apache:
+    container_name: apache-codeigniter
+    build: ./php
+
+    volumes:
+      - ./src/htdocs:/var/www/html
+      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./apache/apache2.conf:/etc/apache2/apache2.conf
+
+    ports:
+      - 80:80
+  
+  db:
+    image: mysql
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    
+    ports:
+      - 3306:3306
+  
+  adminer:
+    image: adminer
+    restart: always
+
+    ports:
+      - 8000:8080
