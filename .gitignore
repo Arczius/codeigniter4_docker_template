@@ -1,3 +1,4 @@
 src/htdocs/*
 src/README.md
 .env
+!src/htdocs/.gitkeep
